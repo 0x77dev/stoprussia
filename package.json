@@ -1,0 +1,10 @@
+{
+  "name": "stoprussia",
+  "version": "0.0.0",
+  "description": "A pack of tools to provide a possibility for non-technical people to help cyberwar against russia",
+  "repository": "git@github.com:0x77dev/stoprussia.git",
+  "author": "Mykhailo Marynenko <0x77dev@protonmail.com>",
+  "license": "GPL-3.0",
+  "private": true,
+  "workspaces": ["./api"]
+}

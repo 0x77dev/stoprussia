@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "ipfs-deploy": "^11.1.0"
+  },
+  "name": "publisher",
+  "private": true,
+  "scripts": {
+    "deploy": "node -r dotenv/config $(which ipfs-deploy) data.json -p pinata -d cloudflare"
+  },
+  "version": "0.0.0"
+}
