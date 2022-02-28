@@ -15,7 +15,7 @@ Also you need to use a VPN if you running this on your local machine, because ma
 
 ### Web browser
 
-You can use web tool to start DDOS on russian services: https://stoprussia.0x77.dev
+You can use web tool to start DDoS on russian services: https://stoprussia.0x77.dev
 
 ### More coming soon
 
