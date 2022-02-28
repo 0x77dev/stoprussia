@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   githubLink.href='https://github.com/0x77dev/stoprussia#stoprussia'
   githubLink.innerText='GitHub repository and more info'
   document.body.append(githubLink)
+  const latestLink = document.createElement('a')
+  latestLink.href='/#4'
+  latestLink.innerText='Attack latest links'
+  document.body.append(githubLink)
   const statusEl = document.createElement('pre')
   document.body.append(statusEl)
   const metricsEl = document.createElement('pre')
