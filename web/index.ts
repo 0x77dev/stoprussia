@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  if (!('serviceWorker' in navigator)) { alert('Browser is unsupported!'); window.close() }
-
   const githubLink = document.createElement('a')
   githubLink.href = 'https://github.com/0x77dev/stoprussia#stoprussia'
   githubLink.innerText = 'GitHub repository and more info'
@@ -9,8 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (location.hash !== '#4') {
     const latestLink = document.createElement('a')
     latestLink.href = '/#4'
-    latestLink.innerText = 'Attack latest targets'
+    latestLink.innerText = '\n Attack latest targets'
     document.body.append(latestLink)
+    
+    latestLink.onclick = () => {
+      location.replace('/#4')
+      location.reload()
+    }
   }
 
   const statusEl = document.createElement('pre')
@@ -45,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log(version, battlefield, targets)
 
-    statusEl.innerText = `Version: ${version}; Battlefield: ${battlefield}; Targets: ${targets.length}\n you can specify the battlefield by appending link with # for example: '/#1'\n targets: ${targets}\nalso you can get advantage of multiple tabs`
+    statusEl.innerText = `Version: ${version}; Battlefield: ${battlefield+1}; Targets: ${targets.length}\n you can specify the battlefield by appending link with # for example: '/#1'\n targets: ${targets}\nalso you can get advantage of multiple tabs`
     console.log('Spawning workers')
 
     const spawn = (target: string) => {

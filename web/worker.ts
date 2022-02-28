@@ -5,5 +5,5 @@ onmessage = function (e) {
     const res = await fetch(target, { mode: 'no-cors' })
     
     self.postMessage(res.ok)
-  }, 200)
+  }, 50)
 }
