@@ -5,12 +5,11 @@ import { StaticPool } from 'node-worker-threads-pool'
 
 export interface AttackStats {
   url: string
-  latency: Histogram
-  requests: Histogram
-  throughput: Histogram
   duration: number
   queue: number
-  autocannon: autocannon.Result
+  totalRequests: number
+  totalBytes: number
+  non2xx: number
 }
 
 export class Target {
@@ -18,34 +17,50 @@ export class Target {
   private queue = new PQueue({ concurrency: this.size })
   private interval?: NodeJS.Timer
   private events = new EventEmitter()
+  private stats: AttackStats 
 
   constructor(public url: string, private size = 1) {
+    const autocannonPath = require.resolve('autocannon')
+
     this.pool = new StaticPool({
-      task: (...args: Parameters<typeof autocannon>): Promise<autocannon.Result> => {
-        const autocannon = require('autocannon')
-        
-        return autocannon(...args)
+      task(...args: Parameters<typeof autocannon>): Promise<autocannon.Result> {
+        return require(this.workerData as string)(...args)
       },
+      workerData: autocannonPath,
       size
     })
+
+    this.stats = {
+      url: url,
+      duration: 0,
+      queue: 1,
+      non2xx: 0,
+      totalRequests: 0,
+      totalBytes: 0
+    }
   }
 
   public async cycle() {
-    const result: autocannon.Result = await this.pool.exec({ title: this.url, url: this.url }).catch(console.warn)
+    const result: autocannon.Result = await this.pool.exec({
+       title: this.url, 
+       url: this.url,
+       
+    }).catch(console.warn)
 
     if (!result) return
     
-    const stats: AttackStats = {
+    this.stats = {
       url: this.url,
-      latency: result.latency,
-      requests: result.requests,
-      throughput: result.throughput,
-      duration: result.duration,
+      duration: this.stats.duration + result.duration,
       queue: this.queue.size,
-      autocannon: result
+      non2xx: this.stats.non2xx + result.non2xx,
+      // @ts-expect-error: no type defined
+      totalRequests: this.stats.totalRequests + result.totalRequests,
+      // @ts-expect-error: no type defined
+      totalBytes: this.stats.totalBytes + result.totalBytes
     }
 
-    this.events.emit('stats', stats)
+    this.events.emit('stats', this.stats)
   }
 
   public on(event: 'stats', listener: (stats: AttackStats) => void) {

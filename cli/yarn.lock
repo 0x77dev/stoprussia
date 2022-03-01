@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@0x77/stoprussia@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@0x77/stoprussia/-/stoprussia-0.0.1.tgz#133a79609e33596a5f0d8e3d9a047cc2c42b3151"
-  integrity sha512-8kL2ZdWjG4gnP9KceuNkicVFit2aqQrqXJt9ipNvE5MXbpiFHsoJw7N+b5BfDiBK0xuY2KItF+2vyh/XFuTuGg==
+"@0x77/stoprussia@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@0x77/stoprussia/-/stoprussia-0.0.2.tgz#7ecd25ea1a306afb61ee501561f47723636fb0ab"
+  integrity sha512-QGxHIfH1Xb9ZqdUDbSLji5tZITkYkMbVvF6eQ35GvBwpMjZTF2yWEEM74vMJoYf2oBjnMR0y/ISzz4Ja6vXIoQ==
   dependencies:
     autocannon "^7.7.0"
     node-worker-threads-pool "^1.5.1"

@@ -5,7 +5,7 @@
   },
   "bugs": "https://github.com/0x77dev/stoprussia/issues",
   "dependencies": {
-    "@0x77/stoprussia": "^0.0.1",
+    "@0x77/stoprussia": "^0.0.2",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
