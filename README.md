@@ -17,9 +17,17 @@ Also you need to use a VPN if you running this on your local machine, because ma
 
 You can use web tool to start DDoS on russian services: https://stoprussia.0x77.dev
 
+### CLI
+
+- [Install Node.js >=16](https://nodejs.org/en/)
+
+```console
+npx stoprussia
+```
+
 ### More coming soon
 
-More performant desktop, cli, docker and kubernetes versions coming soon...
+More performant desktop, docker and kubernetes versions coming soon...
 
 ## How can I get the list of targets?
 
