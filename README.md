@@ -28,6 +28,32 @@ npm i -g stoprussia autocannon
 stoprussia
 ```
 
+#### Running in war mode
+
+```console
+stoprussia -p -t 2 -b 4
+```
+
+or
+
+```console
+stoprussia -p -t 2 -b 3
+```
+
+#### Choosing battlefield
+
+```console
+stoprussia -b 4
+```
+
+#### Running in power mode
+Do not use it Ukraine! This mode requires a lot of network throughput
+This mode multiplies threads by 2
+
+```console
+stoprussia -p -t 2
+```
+
 ### Docker
 
 [Install Docker](https://docs.docker.com/get-docker/)
