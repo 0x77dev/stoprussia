@@ -3,7 +3,7 @@
 **Russia MUST BE STOPPED!**
 This repository contains a set of tools to attack russian services such as news, food delivery, transport and more for both technical and non-technical kind of persons
 
-List is updated once a hour according to: `ddos котики` Ukrainian community 
+List is updated once a hour according to: `IT Army of Ukraine` and `ddos котики` Ukrainian communities 
 
 ## How to get started?
 
