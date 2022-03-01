@@ -55,9 +55,13 @@ More performant desktop, docker and kubernetes versions coming soon...
 The list of targets are split into 4 chunks each chunk called battlefield
 
 Battlefield 1: passive attack and low priority services
+
 Battlefield 2: passive attack and medium priority services
+
 Battlefield 3: active attack and medium priority services
+
 Battlefield 4: active attack and high priority services
+
 
 Battlefield 3 and 4 is the main focus to DDoS
 
