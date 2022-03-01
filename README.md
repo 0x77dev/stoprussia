@@ -1,5 +1,7 @@
 # StopRussia
 
+### [Support the Ukraine 🇺🇦](https://savelife.in.ua/)
+
 **Russia MUST BE STOPPED!**
 This repository contains a set of tools to attack russian services such as news, food delivery, transport and more for both technical and non-technical kind of persons
 
