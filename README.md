@@ -26,6 +26,26 @@ npm i -g stoprussia autocannon
 stoprussia
 ```
 
+### Docker
+
+[Install Docker]()
+
+Single instance:
+
+```console
+docker run -it ghcr.io/0x77dev/stoprussia:main
+```
+
+Running multiple instances:
+
+```console
+docker run -t ghcr.io/0x77dev/stoprussia:main -b 1 &
+docker run -t ghcr.io/0x77dev/stoprussia:main -b 2 &
+docker run -t ghcr.io/0x77dev/stoprussia:main -b 3 &
+docker run -t ghcr.io/0x77dev/stoprussia:main -b 4
+```
+
+
 ### More coming soon
 
 More performant desktop, docker and kubernetes versions coming soon...
