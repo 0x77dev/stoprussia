@@ -1,4 +1,5 @@
-import { Target } from "./target"
+import autocannon from 'autocannon'
+import { Target, AttackStats } from "./target"
 
 export const start = async (urls: string[], size: number = 1, onStats?: Parameters<Target['on']>[1]) => {
   const targets = await Promise.all(urls.map(async (url) => {
@@ -9,4 +10,9 @@ export const start = async (urls: string[], size: number = 1, onStats?: Paramete
   }))
 
   return () => Promise.all(targets.map((target) => target.stop()))
+}
+
+export const printResult = (stats: AttackStats) => {
+  // @ts-expect-error: no-types
+  autocannon.printResult(stats.autocannon)
 }

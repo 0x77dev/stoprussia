@@ -5,10 +5,12 @@ import { StaticPool } from 'node-worker-threads-pool'
 
 export interface AttackStats {
   url: string
-  latency: Histogram;
-  throughput: Histogram;
-  duration: number;
+  latency: Histogram
+  requests: Histogram
+  throughput: Histogram
+  duration: number
   queue: number
+  autocannon: autocannon.Result
 }
 
 export class Target {
@@ -29,16 +31,18 @@ export class Target {
   }
 
   public async cycle() {
-    const result = await this.pool.exec({ url: this.url }).catch(console.warn)
+    const result: autocannon.Result = await this.pool.exec({ title: this.url, url: this.url }).catch(console.warn)
 
     if (!result) return
     
     const stats: AttackStats = {
       url: this.url,
       latency: result.latency,
+      requests: result.requests,
       throughput: result.throughput,
       duration: result.duration,
-      queue: this.queue.size
+      queue: this.queue.size,
+      autocannon: result
     }
 
     this.events.emit('stats', stats)
