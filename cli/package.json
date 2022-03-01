@@ -1,7 +1,4 @@
 {
-  "name": "stoprussia",
-  "description": "Russia MUST BE STOPPED! This CLI tool will automatically attack russian services such as news, food delivery, transport and more",
-  "version": "0.0.0",
   "author": "Mykhailo Marynenko @0x77dev",
   "bin": {
     "stoprussia": "./bin/run"
@@ -16,6 +13,7 @@
     "node-fetch": "^2.6.7",
     "tslib": "^1"
   },
+  "description": "Russia MUST BE STOPPED! This CLI tool will automatically attack russian services such as news, food delivery, transport and more",
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@types/node": "^10",
@@ -34,8 +32,9 @@
   "keywords": [
     "oclif"
   ],
-  "license": "Gpl-3.0",
+  "license": "GPL-3.0",
   "main": "lib/index.js",
+  "name": "stoprussia",
   "oclif": {
     "bin": "stoprussia"
   },
@@ -45,5 +44,6 @@
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "version": "0.0.0"
 }
