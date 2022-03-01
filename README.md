@@ -19,10 +19,11 @@ You can use web tool to start DDoS on russian services: https://stoprussia.0x77.
 
 ### CLI
 
-- [Install Node.js >=16](https://nodejs.org/en/)
+[Install Node.js >=16](https://nodejs.org/en/)
 
 ```console
-npx stoprussia
+npm i -g stoprussia autocannon
+stoprussia
 ```
 
 ### More coming soon
