@@ -19,7 +19,7 @@ $ npm install -g stoprussia
 $ stoprussia COMMAND
 running command...
 $ stoprussia (-v|--version|version)
-stoprussia/0.0.1 darwin-arm64 node-v16.14.0
+stoprussia/0.0.2 darwin-arm64 node-v16.14.0
 $ stoprussia --help [COMMAND]
 USAGE
   $ stoprussia COMMAND
