@@ -50,6 +50,17 @@ docker run -t ghcr.io/0x77dev/stoprussia:main -b 4
 
 More performant desktop, docker and kubernetes versions coming soon...
 
+## Choosing battlefield
+
+The list of targets are split into 4 chunks each chunk called battlefield
+
+Battlefield 1: passive attack and low priority services
+Battlefield 2: passive attack and medium priority services
+Battlefield 3: active attack and medium priority services
+Battlefield 4: active attack and high priority services
+
+Battlefield 3 and 4 is the main focus to DDoS
+
 ## How can I get the list of targets?
 
 Targets list are distributed over IPFS
