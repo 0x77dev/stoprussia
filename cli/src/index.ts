@@ -27,13 +27,13 @@ const startAttack = async (targets: string[], version: number, flags: {
 
   if(flags.power) {
     flags.threads = flags.threads * 2
-    console.warn('Warning: Power mode enabled! Do not use it Ukraine! This mode requires a lot of network throughput')
+    console.warn('Warning: Power mode enabled! Do not use it in Ukraine! This mode requires a lot of network throughput')
   }
 
   const battlefield = flags.battlefield ? flags.battlefield - 1 : new Date().getSeconds() % 4
 
   console.log('Got targets list', targets.length, version)
-  targets = [...getChunks(targets, 15)][battlefield]
+  targets = Array.from([...getChunks(targets, 15)][battlefield])
   console.log(`\tbattlefield: ${battlefield + 1}\n`, `\ttargets: ${targets.length}`)
 
   return start(targets, flags.threads, console.log)
