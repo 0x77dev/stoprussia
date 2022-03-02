@@ -5,5 +5,5 @@ onmessage = function (e) {
     console.time(target)
     self.postMessage([true])
     fetch(target, { mode: 'no-cors' }).finally(() => console.timeEnd(target))
-  }, 5)
+  }, 15)
 }
