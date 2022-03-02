@@ -45,5 +45,5 @@
     "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts",
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
