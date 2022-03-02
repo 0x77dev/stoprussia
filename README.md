@@ -1,5 +1,7 @@
 # StopRussia
 
+[![banner](./banner.png)](https://stoprussia.0x77.dev)
+
 ### [Support the Ukraine 🇺🇦](https://savelife.in.ua/)
 
 **Russia MUST BE STOPPED!**

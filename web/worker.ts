@@ -1,9 +1,12 @@
 onmessage = function (e) {
   const [{ target }] = e.data as [{ target: string }]
-  console.log(target, 'starting')
-  setInterval(async () => {
-    const res = await fetch(target, { mode: 'no-cors' })
-    
-    self.postMessage(res.ok)
-  }, 50)
+  
+  
+  setInterval(() => {
+    requestAnimationFrame(() => {
+      console.time(target)
+      self.postMessage([true])
+      fetch(target, { mode: 'no-cors' }).finally(() => console.timeEnd(target))
+    })
+  })
 }
