@@ -45,8 +45,6 @@ const start = () => {
   }
 
   start()
-
-  setInterval(() => location.reload(), 60 * 60000)
 }
 
 const startButton = document.getElementById('start') as HTMLLinkElement
