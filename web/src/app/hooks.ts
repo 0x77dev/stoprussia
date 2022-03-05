@@ -1,4 +1,4 @@
-import { Reducer, useCallback, useEffect, useReducer } from 'react'
+import { Reducer, useCallback, useReducer, useState } from 'react'
 
 type Response = { targets: string[]; version?: number }
 
@@ -25,17 +25,38 @@ const reducer: Reducer<State, Action> = (state, action) => {
   }
 }
 
-const useAttack = () => {
+function* getChunks<T = any>(arr: T[], n: number) {
+  for (let i = 0; i < arr.length; i += n) {
+    yield arr.slice(i, i + n)
+  }
+}
+
+const useAttack = (
+  battlefield: number,
+): [() => void, () => void, boolean, State] => {
   const [state, dispatch] = useReducer(reducer, {})
+
+  const [isActive, setIsActive] = useState(false)
+  const [workers, setWorkers] = useState<Worker[]>([])
 
   const start = useCallback(async () => {
     const res = await fetch(API)
 
-    const { targets } = (await res.json()) as Response
+    let { targets } = (await res.json()) as Response
+
+    targets = [...(getChunks(targets, Math.floor(targets.length / 4)) as any)][
+      battlefield
+    ]
+
+    setIsActive(true)
 
     const spawn = (target: string) => {
       const worker = new Worker(new URL('../worker.ts', import.meta.url), {
         type: 'module',
+      })
+
+      setWorkers((workers) => {
+        return [...workers, worker]
       })
 
       worker.postMessage([{ target }])
@@ -51,13 +72,17 @@ const useAttack = () => {
     for (const target of targets) {
       spawn(target)
     }
-  }, [])
+  }, [battlefield])
 
-  useEffect(() => {
-    start()
-  }, [start])
+  const stop = useCallback(() => {
+    setIsActive(false)
 
-  return state
+    workers.forEach((worker) => {
+      worker.terminate()
+    })
+  }, [workers])
+
+  return [start, stop, isActive, state]
 }
 
 export { useAttack }

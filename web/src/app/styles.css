@@ -1,0 +1,156 @@
+body {
+  background-color: #000;
+  font-family: sans-serif;
+  color: #fff;
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.mapWrapper {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  max-width: 720px;
+}
+
+.target-pulse--fill {
+  fill: #27FB6B;
+
+}
+
+.target-pulse--stroke {
+  stroke: #27FB6B;
+  stroke-width: 1px;
+  stroke-opacity: 0.5;
+}
+
+.target-pulse {
+  transform-origin: 50% 50%;
+}
+
+.target {
+  position: absolute;
+  left: 0;
+  fill: none;
+  fill-opacity: 1;
+}
+
+@keyframes pulse {
+  from {
+    stroke-width: 3px;
+    stroke-opacity: 1;
+    transform: scale(0.3);
+  }
+  to {
+    stroke-width: 0;
+    stroke-opacity: 0;
+    transform: scale(2);
+  }
+}
+
+
+
+.content {
+  margin-top: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.map {
+  display: block;
+  margin: 0 auto;
+}
+
+.map .land {
+  fill: #27FB6B;
+  opacity: 0.15;
+}
+
+form {
+
+}
+
+select {
+  display: block;
+  padding: 14px;
+  border-style: none;
+  border-radius: 4px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, .5);
+  color: #fff;
+  width: 300px;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+button {
+  box-shadow: 0 0 7px #27FB6B;
+  border-style: none;
+  border-radius: 2px;
+  display: block;
+  margin-bottom: 1rem;
+  padding: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 300px;
+  background: linear-gradient(90deg, #27FB6B, #13b145);
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 0 15px #27FB6B;
+}
+
+.button--stop {
+  background-color: red;
+}
+
+select:focus {
+  outline-color: #27FB6B;
+  border: none;
+}
+
+select:focus-visible {
+  border: none;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  font-size: 0.75rem;
+  color: #27FB6B;
+  text-transform: uppercase;
+}
+
+.table-th--requests {
+  min-width: 90%;
+}
+
+.table-th--requests {
+  width: 40px;
+}
+
+.table tbody {
+  opacity: 0.7;
+}
+
+.table th {
+  text-align:start;
+  padding: 8px;
+}
+
+.table td {
+  padding: 8px;
+}
