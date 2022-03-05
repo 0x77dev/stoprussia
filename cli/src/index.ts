@@ -33,7 +33,7 @@ const startAttack = async (targets: string[], version: number, flags: {
   const battlefield = flags.battlefield ? flags.battlefield - 1 : new Date().getSeconds() % 4
 
   console.log('Got targets list', targets.length, version)
-  targets = Array.from([...getChunks(targets, 15)][battlefield])
+  targets = Array.from([...getChunks(targets, Math.floor(targets.length/4))][battlefield])
   console.log(`\tbattlefield: ${battlefield + 1}\n`, `\ttargets: ${targets.length}`)
 
   return start(targets, flags.threads, console.log)
