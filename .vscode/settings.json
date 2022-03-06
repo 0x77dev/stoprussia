@@ -5,9 +5,6 @@
   "editor.insertSpaces": true,
   "editor.renderWhitespace": "all",
   "editor.scrollBeyondLastLine": false,
-  "editor.tabSize": 2,
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
   "files.autoSave": "onFocusChange",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -15,5 +12,9 @@
   "git.enableSmartCommit": true,
   "prettier.requireConfig": true,
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.labelFormat": "short"
+  "workbench.editor.labelFormat": "short",
+  "cSpell.words": [
+      "autocannon"
+  ],
+  "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }

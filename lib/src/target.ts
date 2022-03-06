@@ -1,0 +1,81 @@
+import { EventEmitter } from 'events'
+import autocannon, { Histogram } from 'autocannon'
+import PQueue from 'p-queue'
+import { StaticPool } from 'node-worker-threads-pool'
+
+export interface AttackStats {
+  url: string
+  duration: number
+  queue: number
+  totalRequests: number
+  totalBytes: number
+  non2xx: number
+}
+
+export class Target {
+  private pool: StaticPool<any>
+  private queue = new PQueue({ concurrency: this.size })
+  private interval?: NodeJS.Timer
+  private events = new EventEmitter()
+  private stats: AttackStats 
+
+  constructor(public url: string, private size = 1) {
+    const autocannonPath = require.resolve('autocannon')
+
+    this.pool = new StaticPool({
+      task(...args: Parameters<typeof autocannon>): Promise<autocannon.Result> {
+        return require(this.workerData as string)(...args)
+      },
+      workerData: autocannonPath,
+      size
+    })
+
+    this.stats = {
+      url: url,
+      duration: 0,
+      queue: 1,
+      non2xx: 0,
+      totalRequests: 0,
+      totalBytes: 0
+    }
+  }
+
+  public async cycle() {
+    const result: autocannon.Result = await this.pool.exec({
+       title: this.url, 
+       url: this.url,
+       
+    }).catch(console.warn)
+
+    if (!result) return
+    
+    this.stats = {
+      url: this.url,
+      duration: this.stats.duration + result.duration,
+      queue: this.queue.size,
+      non2xx: this.stats.non2xx + result.non2xx,
+      // @ts-expect-error: no type defined
+      totalRequests: this.stats.totalRequests + result.totalRequests,
+      // @ts-expect-error: no type defined
+      totalBytes: this.stats.totalBytes + result.totalBytes
+    }
+
+    this.events.emit('stats', this.stats)
+  }
+
+  public on(event: 'stats', listener: (stats: AttackStats) => void) {
+    this.events.on(event, listener)
+  }
+
+  public async start() {
+    this.interval = setInterval(() => {
+      this.queue.add(() => this.cycle())
+    }, 250)
+  }
+
+  public async stop() {
+    if (this.interval) clearInterval(this.interval)
+    this.queue.clear()
+    await this.pool.destroy()
+  }
+}

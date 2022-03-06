@@ -6,5 +6,5 @@
   "author": "Mykhailo Marynenko <0x77dev@protonmail.com>",
   "license": "GPL-3.0",
   "private": true,
-  "workspaces": ["./targets", "./web"]
+  "workspaces": ["./targets", "./web", "./cli", "./lib", "./stats"]
 }
