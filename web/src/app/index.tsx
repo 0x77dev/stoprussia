@@ -10,6 +10,8 @@ const marks = getMarks()
 const App = () => {
   const [start, stop, isActive, data] = useAttack(3)
 
+  const targets = Object.entries(data)
+
   return (
     <div className="main">
       <div className="mapWrapper">
@@ -42,25 +44,27 @@ const App = () => {
             </button>
           )}
         </form>
-        <table className="table">
-          <thead>
-            <tr>
-              <th className="table-th--name">Name</th>
-              <th className="table-th--requests">Requests</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(data).map((v) => {
-              const [url, count] = v as [string, number]
-              return (
-                <tr key={url}>
-                  <td>{url}</td>
-                  <td>{count}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+        {targets.length ? (
+          <table className="table">
+            <thead>
+              <tr>
+                <th className="table-th--name">Name</th>
+                <th className="table-th--requests">Requests</th>
+              </tr>
+            </thead>
+            <tbody>
+              {targets.map((v) => {
+                const [url, count] = v as [string, number]
+                return (
+                  <tr key={url}>
+                    <td>{url}</td>
+                    <td>{count}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        ) : null}
       </div>
     </div>
   )

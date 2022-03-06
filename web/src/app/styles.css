@@ -12,6 +12,7 @@ body {
 }
 
 .mapWrapper {
+  margin-top: 40px;
   width: 100%;
   position: absolute;
   top: 0;
@@ -53,8 +54,6 @@ body {
     transform: scale(2);
   }
 }
-
-
 
 .content {
   margin-top: 40%;
