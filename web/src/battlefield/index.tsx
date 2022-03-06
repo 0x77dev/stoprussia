@@ -8,8 +8,11 @@ import { FormEvent, useMemo, useState } from 'react'
 import { Button } from '../lib/button'
 import { PageBattlefieldDescr } from './components/descr'
 
+const BATTLEFIELD_DEFAULT = 4
+
 const PageBattlefield = () => {
-  const [battlefield, setBattlefield] = useState(1)
+  const [battlefield, setBattlefield] = useState(BATTLEFIELD_DEFAULT)
+
   const [{ start, stop, reset }, isActive, data] = useAttack(battlefield)
 
   const targets = Object.entries(data)
