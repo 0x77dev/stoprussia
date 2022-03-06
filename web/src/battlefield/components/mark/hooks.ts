@@ -4,14 +4,14 @@ const useMark = (ref: RefObject<SVGElement>) => {
   useEffect(() => {
     const list = ref.current?.childNodes as HTMLElement[] | undefined
 
-    const add = 1 / 180
+    const add = 0.7 / 180
 
-    let scale = 0
+    let scale = 0.3
 
     if (list?.length) {
       const animation = () => {
         if (scale >= 1) {
-          scale = 0
+          scale = 0.3
         }
 
         scale += add

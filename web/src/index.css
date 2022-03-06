@@ -1,0 +1,22 @@
+:root {
+  --color-primary: #4CB944;
+  --color-danger: #df2935;
+  --color-light: #fff;
+  --color-dark: #1f242e;
+
+  --text-font-1: 'Fira Sans', sans-serif;
+  --text-font-2: 'Merriweather', sans-serif;
+}
+
+#root {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow-y: hidden;
+  background-color: var(--color-dark);
+  font-family: var(--text-font-1);
+  color: var(--color-light);
+}

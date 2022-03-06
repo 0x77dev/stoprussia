@@ -1,0 +1,24 @@
+.text-title {
+    font-family: var(--text-font-2);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+.text-title--primary {
+    color: var(--color-primary);
+}
+
+.text-descr {
+    line-height: 1.5;
+}
+
+.text-descr a {
+    color: var(--color-primary);
+}
+
+@media screen and (min-width: 40em) {
+    .text-title {
+        font-size: 4rem;
+    }
+}

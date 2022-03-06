@@ -1,29 +1,10 @@
-import { Reducer, useCallback, useReducer, useState } from 'react'
+import { useCallback, useReducer, useState } from 'react'
+import { reducer } from './reducer'
+import { ACTION_TYPE, AttackHook } from './types'
 
 type Response = { targets: string[]; version?: number }
 
 const API = 'https://srl.0x77.dev'
-
-enum KIND {
-  UPDATE = 'UPDATE',
-}
-
-interface Action {
-  type: KIND
-  payload: string
-}
-
-type State = Record<string, number>
-
-const reducer: Reducer<State, Action> = (state, action) => {
-  switch (action.type) {
-    case KIND.UPDATE: {
-      const count = state[action.payload] ?? 0
-
-      return { ...state, [action.payload]: count + 1 }
-    }
-  }
-}
 
 function* getChunks<T = any>(arr: T[], n: number) {
   for (let i = 0; i < arr.length; i += n) {
@@ -31,9 +12,7 @@ function* getChunks<T = any>(arr: T[], n: number) {
   }
 }
 
-const useAttack = (
-  battlefield: number,
-): [() => void, () => void, boolean, State] => {
+const useAttack: AttackHook = (battlefield) => {
   const [state, dispatch] = useReducer(reducer, {})
 
   const [isActive, setIsActive] = useState(false)
@@ -63,7 +42,7 @@ const useAttack = (
 
       worker.onmessage = (e: MessageEvent) => {
         dispatch({
-          type: KIND.UPDATE,
+          type: ACTION_TYPE.UPDATE,
           payload: e.data.target,
         })
       }
@@ -82,7 +61,19 @@ const useAttack = (
     })
   }, [workers])
 
-  return [start, stop, isActive, state]
+  const reset = useCallback(() => {
+    dispatch({ type: ACTION_TYPE.RESET })
+  }, [])
+
+  return [
+    {
+      start,
+      stop,
+      reset,
+    },
+    isActive,
+    state,
+  ]
 }
 
 export { useAttack }

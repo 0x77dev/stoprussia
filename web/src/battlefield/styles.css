@@ -1,0 +1,122 @@
+.battlefield-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.map-wrapper {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.target-pulse--fill {
+  fill: var(--color-primary);
+}
+
+.target-pulse--stroke {
+  stroke: var(--color-primary);
+  stroke-width: 1px;
+  stroke-opacity: 0.5;
+}
+
+.target-pulse {
+  transform-origin: 50% 50%;
+}
+
+.target {
+  position: absolute;
+  left: 0;
+  fill: none;
+  fill-opacity: 1;
+}
+
+.battlefield-content {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+}
+
+.map {
+  display: block;
+  margin: 0 auto;
+}
+
+.map .land {
+  fill: var(--color-primary);
+  opacity: 0.1;
+}
+
+.form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+}
+
+.select {
+  width: 100%;
+  font-family: var(--text-font-1);
+  border: 2px solid transparent;
+  display: block;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--color-light);
+  text-transform: uppercase;
+}
+
+.select:focus {
+  outline: none;
+  border: 2px solid var(--color-primary);
+}
+
+.table {
+  width: 100%;
+  font-size: 14px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.table-th--name {
+  width: 100%;
+}
+
+.table-th--count {
+  width: 1px;
+  white-space: nowrap;
+}
+
+.table-td--count {
+  text-align: center;
+}
+
+.table tbody {
+  opacity: 0.7;
+}
+
+.table th {
+  text-align: start;
+  padding: 8px;
+}
+
+.table td {
+  padding: 8px;
+}
+
+.battlefield-descr {
+  max-width: 30rem;
+}
+
+.battlefield-descr ul {
+  padding-left: 1rem;
+}
