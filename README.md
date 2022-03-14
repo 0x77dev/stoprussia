@@ -1,3 +1,5 @@
+Archived due to small activity and better alternatives
+
 # StopRussia
 
 [![banner](./banner.jpg)](https://stoprussia.0x77.dev)
